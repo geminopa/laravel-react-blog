@@ -22,10 +22,10 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+                <h2 className="text-lg font-medium text-gray-900">Profile</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
+                   プロフィール情報の更新を行うことができます。
                 </p>
             </header>
 
@@ -60,6 +60,19 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     />
 
                     <InputError className="mt-2" message={errors.email} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="bio" value="bio" />
+
+                    <textarea
+                        value={data.bio}
+                        placeholder="bioを入力してください"
+                        className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                        onChange={e => setData('bio', e.target.value)}
+                    ></textarea>
+
+                    <InputError className="mt-2" message={errors.bio} />
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (
