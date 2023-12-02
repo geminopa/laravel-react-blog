@@ -11,6 +11,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
         email: user.email,
+        bio: user.bio,
     });
 
     const submit = (e) => {
@@ -63,7 +64,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="bio" value="bio" />
+                    <InputLabel htmlFor="bio" value="Bio" />
 
                     <textarea
                         value={data.bio}
