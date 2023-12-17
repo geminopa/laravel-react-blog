@@ -3,9 +3,8 @@ import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
-import Post from '@/Components/Post';
 
-export default function StorePostForm({ posts }) {
+export default function StorePostForm() {
     const { data, setData, post, processing, reset, errors } = useForm({
         title: '',
         content: '',
@@ -45,14 +44,6 @@ export default function StorePostForm({ posts }) {
                     <PrimaryButton className="mt-4" disabled={processing}>Post</PrimaryButton>
                 </div>
             </form>
-
-            <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
-                {posts.map(post =>
-                    <Post key={post.id} post={post} />
-                )}
-            </div>
         </div>
-
     )
-
 }

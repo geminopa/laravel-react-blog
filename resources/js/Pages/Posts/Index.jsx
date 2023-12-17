@@ -2,6 +2,7 @@ import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import StorePostForm from './Partials/StorePostForm';
+import IndexPosts from './Partials/IndexPosts';
 
 export default function Index({ auth, posts }) {
     return (
@@ -21,13 +22,16 @@ export default function Index({ auth, posts }) {
                         
                         {/* post新規作成 */}
                         <StorePostForm
-                            posts={posts}
-                            className="max-w-xl"
                         />
 
                     </div>
                 </div>
             </div>
+
+            {/* post一覧 */}
+            <IndexPosts
+                posts={posts}
+            />
 
         </AuthenticatedLayout>
     )
