@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -15,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user:id,name')->latest()->get();
         return Inertia::render('Posts/Index', [
             'posts' => $posts,
         ]);
@@ -24,16 +26,28 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param \App\Http\Requests\StorePostRequest $request
+     * @return Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request): RedirectResponse
     {
+        $validated = $request->validated();
+
+        $user = Auth::user();
+        $post = new Post();
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+
+
+        return redirect(route('posts.index'));
         //
     }
 

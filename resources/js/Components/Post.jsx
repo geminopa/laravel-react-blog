@@ -9,7 +9,7 @@ export default function Post({ post }) {
             <div className="flex-1">
                 <div className="flex justify-between items-center">
                     <div>
-                        <span className="text-gray-800">{chirp.user.name}</span>
+                        <span className="text-gray-800">{post.user.name}</span>
                         <small className="ml-2 text-sm text-gray-600">{new Date(post.created_at).toLocaleString()}</small>
                     </div>
                 </div>

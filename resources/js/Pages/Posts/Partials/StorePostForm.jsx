@@ -1,26 +1,26 @@
-import { useForm, Head } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 import Post from '@/Components/Post';
 
-export default function CreatePostForm({ posts }) {
+export default function StorePostForm({ posts }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         title: '',
         content: '',
     });
 
-    const createPost = (e) => {
+    const storePost = (e) => {
         e.preventDefault();
-        post(route('posts.create'), { onSuccess: ()=> reset() });
+        post(route('posts.store'), { onSuccess: ()=> reset() });
     };
 
     return (
         <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-            <form onSubmit={createPost} className="mt-6 space-y-6">
+            <form onSubmit={storePost} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="title" value="title" />
+                    <InputLabel htmlFor="title" value="タイトル" />
 
                     <TextInput
                         id="title"
@@ -34,6 +34,7 @@ export default function CreatePostForm({ posts }) {
                     <InputError className="mt-2" message={errors.title} />
                 </div>
                 <div>
+                    <InputLabel htmlFor="content" value="本文" />
                     <textarea
                         value={data.content}
                         placeholder="本文を入力してください"
