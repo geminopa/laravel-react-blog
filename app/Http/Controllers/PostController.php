@@ -41,7 +41,7 @@ class PostController extends Controller
 
         $user = Auth::user();
         $post = new Post();
-        $post->user_id = Auth::user()->id;
+        $post->user_id = $user->id;
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
@@ -56,8 +56,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        dd($id);
-        //
+        $post = Post::where('id', $id)->firstOrFail();
     }
 
     /**
