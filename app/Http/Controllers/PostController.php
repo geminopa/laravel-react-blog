@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
-use Inertia\Response;
+use League\CommonMark\CommonMarkConverter;
 
 class PostController extends Controller
 {
@@ -64,7 +64,9 @@ class PostController extends Controller
             Log::error($e);
             abort(404);
         }
-        return Inertia::render('Posts/Show', ['post' => $post]);
+        return Inertia::render('Posts/Show', [
+            'post' => $post,
+        ]);
     }
 
     /**

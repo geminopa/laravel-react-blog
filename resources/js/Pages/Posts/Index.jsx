@@ -7,7 +7,7 @@ import IndexPosts from './Partials/IndexPosts';
 export default function Index({ auth, posts }) {
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Posts" />
+            <Head title="Post 新規作成" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
