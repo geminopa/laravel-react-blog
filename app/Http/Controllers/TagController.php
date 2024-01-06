@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\StoreTagRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,23 +33,18 @@ class TagController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\StorePostRequest $request
+     * @param \App\Http\Requests\StoreTagRequest $request
      * @return Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request): RedirectResponse
+    public function store(StoreTagRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
-        $user = Auth::user();
-        $post = new Post();
-        $post->user_id = $user->id;
-        $post->title = $request->title;
-        $post->content = $request->content;
+        $post = new Tag();
+        $post->name = $request->name;
         $post->save();
 
-
-        return redirect(route('posts.index'));
-        //
+        return redirect(route('tags.index'));
     }
 
     /**
@@ -57,15 +52,7 @@ class TagController extends Controller
      */
     public function show(string $id)
     {
-        try {
-            $post = Post::findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            Log::error($e);
-            abort(404);
-        }
-        return Inertia::render('Posts/Show', [
-            'post' => $post,
-        ]);
+        //
     }
 
     /**
