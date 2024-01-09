@@ -3,11 +3,13 @@ import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
+import Select from 'react-select';
 
 export default function StorePostForm() {
     const { data, setData, post, processing, reset, errors } = useForm({
         title: '',
         content: '',
+        tag_id: '',
     });
 
     const storePost = (e) => {
@@ -40,6 +42,12 @@ export default function StorePostForm() {
                         className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         onChange={e => setData('content', e.target.value)}
                     ></textarea>
+                    <InputError message={errors.message} className="mt-2" />
+                    <PrimaryButton className="mt-4" disabled={processing}>Post</PrimaryButton>
+                </div>
+                <div>
+                    <InputLabel htmlFor="tag_id" value="タグ" />
+                        
                     <InputError message={errors.message} className="mt-2" />
                     <PrimaryButton className="mt-4" disabled={processing}>Post</PrimaryButton>
                 </div>
